@@ -66,5 +66,10 @@ public class LoginController {
 	public void authOkProc() {
 		js.authOkProc(join);
 	}
+	
+	// 생년월일 선택 시 나이 계산해서 나이창에 입력되도록
+	public void birthProc() {
+		js.birthProc(join);
+	}
 
 }

@@ -7,4 +7,5 @@ public interface JoinService {
 	public void idDupProc(Parent membership);
 	public void authSendProc(Parent membership);
 	public boolean authOkProc(Parent membership);
+	public void birthProc(Parent membership);
 }

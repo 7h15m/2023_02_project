@@ -24,12 +24,13 @@
     <RowConstraints maxHeight="63.600006103515625" minHeight="10.0" prefHeight="40.79998779296875" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" onAction="#joinProc" prefHeight="20.0" prefWidth="100.0" text="회원가입" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#loginProc" prefHeight="41.0" prefWidth="170.0" text="로그인" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <Button mnemonicParsing="false" onAction="#loginProc" prefHeight="41.0" prefWidth="170.0" text="로그인" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
+      <Button mnemonicParsing="false" onAction="#joinProc" prefHeight="20.0" prefWidth="100.0" text="회원가입" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+
       <Label alignment="CENTER" prefHeight="17.0" prefWidth="620.0" text="Ticket Box" GridPane.columnSpan="3">
          <font>
             <Font size="36.0" />

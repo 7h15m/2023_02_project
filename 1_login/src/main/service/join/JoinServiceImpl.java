@@ -1,5 +1,6 @@
 package main.service.join;
 
+import java.time.LocalDate;
 import java.util.Random;
 
 import javafx.event.ActionEvent;
@@ -7,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -26,6 +28,7 @@ public class JoinServiceImpl implements JoinService{
 	String checkNumber; // 랜덤 인증번호 문자형 변환
 	Parent auth = null; // 인증번호(auth.fxml)
 	boolean authFin = false; // 인증번호 확인 완료 시
+	int ageCal; // 나이 계산한 변수
 	
 	
 	public JoinServiceImpl() {
@@ -85,17 +88,8 @@ public class JoinServiceImpl implements JoinService{
 			return;
 		}
 		
-		// age에 숫자만 입력 가능하도록
-		String num = "[0-9]+";
-		if(age.getText().matches(num)) {
-			
-		}else {
-			cs.errorMsg("입력 에러", "입력 형식 불일치", "나이는 숫자만 입력 가능합니다");
-			age.clear();
-			age.requestFocus();
-			return;
-		}
 		// tel에 숫자만 입력 가능하도록
+		String num = "[0-9]+";
 		if(tel.getText().matches(num)) {
 			
 		} else {
@@ -111,7 +105,7 @@ public class JoinServiceImpl implements JoinService{
 			m.setId(id.getText());
 			m.setPw(pw.getText());
 			m.setName(name.getText());
-			m.setAge(Integer.parseInt(age.getText()));
+			m.setAge(ageCal);
 			m.setTel(tel.getText());
 			
 		// 불일치할 경우	
@@ -261,6 +255,18 @@ public class JoinServiceImpl implements JoinService{
 			joinAuth.requestFocus();
 		}
 		return authFin;
+	}
+	
+	// 생년월일 선택 시 나이 계산해서 나이창에 입력되도록
+	public void birthProc(Parent membership) {
+		TextField age = (TextField) membership.lookup("#joinAge");
+		
+		DatePicker birth = (DatePicker) membership.lookup("#joinBirth");
+		LocalDate today = LocalDate.now();
+		ageCal = (today.getYear()-birth.getValue().getYear())+1;	
+		
+		age.setText(String.valueOf(ageCal)+" 세");
+
 	}
 
 }

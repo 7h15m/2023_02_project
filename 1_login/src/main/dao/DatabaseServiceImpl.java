@@ -135,4 +135,89 @@ public class DatabaseServiceImpl implements DatabaseService{
 		return false;
 	}
 
+	@Override // 아이디 찾기 클릭 시 db에 (이름+전화번호가) 일치하는 아이디가 있는지 확인(일치 시 해당 값 반환)
+	public String searchId(String name, String tel) {
+		// TODO Auto-generated method stub
+		
+		String sql = "select id from test2 where name=? and phone=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, tel);
+			
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			String result = rs.getString(1);
+			
+			if(result != null) {
+				return result; // 일치하는 값이 있으면 반환
+			}
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+
+	@Override // 비밀번호 찾기 클릭 시 db에 (아이디+이름+전화번호가) 일치하는 비밀번호가 있는지 확인(일치 시 해당 값 반환)
+	public String searchPw(String id, String name, String tel) {
+		// TODO Auto-generated method stub
+		
+		String sql = "select id from test2 where id=? and name=? and phone=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			pstmt.setString(3, tel);
+			
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			String result = rs.getString(1);
+			
+			if(result != null) {
+				return result; // 일치하는 값이 있으면 반환
+			}
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return null;
+	}
+
+
+	@Override
+	public boolean chkTel(String tel) {
+		// TODO Auto-generated method stub
+		
+		boolean result = false;
+		
+		String sql = "select decode(count(*),1,'false','true')" + " from test2 where phone=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tel);
+			
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			
+			result = Boolean.parseBoolean(rs.getString(1)); // 전화번호가 있으면 false, 없으면 true값 반환
+			
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+	
+	
+
 }

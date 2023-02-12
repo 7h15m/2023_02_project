@@ -172,6 +172,7 @@ public class JoinServiceImpl implements JoinService{
 		
 		if(tel.getText().isEmpty()) {
 			cs.errorMsg("입력 에러", "비어있는 항목", "전화번호 항목이 비어있습니다");
+			tel.requestFocus();
 			return;
 			
 		} else {
@@ -179,37 +180,48 @@ public class JoinServiceImpl implements JoinService{
 			String num = "[0-9]+";
 			
 			if(tel.getText().matches(num)) {
-				
-				clickAuth = true; // 인증번호 발송이 완료됐다는 논리값
-				
-				// 랜덤으로 인증번호 생성
-				Random random = new Random();
-				int checkNum = random.nextInt(888888) + 111111;
-				// 라벨에 setText를 넣기 위해 정수형을 문자형으로 변경한 변수 추가
-				checkNumber = String.valueOf(checkNum);
-				
-				// 인증번호 생성 창
-				Stage authStage = new Stage();
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../auth.fxml"));
-				
-				try {
-					auth = loader.load();
+				// 전화번호 중복 아닐 때만 발송하도록
+				if(ds.chkTel(tel.getText())) {
+					
+					clickAuth = true; // 인증번호 발송이 완료됐다는 논리값
+					// 전화번호 입력창 수정불가
+					tel.setEditable(false);
+					
+					// 랜덤으로 인증번호 생성
+					Random random = new Random();
+					int checkNum = random.nextInt(888888) + 111111;
+					// 라벨에 setText를 넣기 위해 정수형을 문자형으로 변경한 변수 추가
+					checkNumber = String.valueOf(checkNum);
+					
+					// 인증번호 생성 창
+					Stage authStage = new Stage();
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../auth.fxml"));
+					
+					try {
+						auth = loader.load();
 
-					authStage.setScene(new Scene(auth));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+						authStage.setScene(new Scene(auth));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					// 라벨에 인증번호 입력
+					Label randomNum = (Label) auth.lookup("#randomNum");
+					randomNum.setText(checkNumber);
+					
+					LoginController ctrl = loader.getController();
+					ctrl.setJoin(auth);
+
+					authStage.setTitle("인증번호");
+					authStage.show();
+					
+				} else {
+					cs.errorMsg("중복 확인", "전화번호 확인", "같은 전화번호가 존재 합니다");
+					tel.clear();
+					tel.requestFocus();
 				}
-				
-				// 라벨에 인증번호 입력
-				Label randomNum = (Label) auth.lookup("#randomNum");
-				randomNum.setText(checkNumber);
-				
-				LoginController ctrl = loader.getController();
-				ctrl.setJoin(auth);
 
-				authStage.setTitle("인증번호");
-				authStage.show();
 			// tel에 숫자만 입력 안했을 경우	
 			} else {
 				cs.errorMsg("입력 에러", "입력 형식 불일치", "전화번호는 숫자만 입력 가능합니다");

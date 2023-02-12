@@ -1,5 +1,7 @@
 package main.service.login;
 
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -65,9 +67,11 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 
-	@Override
+	@Override // 티켓박스의 회원가입 버튼 클릭 시 실행
 	public Parent joinProc(Parent root) {
 		// TODO Auto-generated method stub
+		
+		// 회원 가입 창이라는 새로운 창 띄움(join.fxml)
 		Stage joinForm = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../join.fxml"));
 
@@ -92,6 +96,61 @@ public class LoginServiceImpl implements LoginService{
 		birth.getEditor().setFont(new Font(14));
 
 		return join;
+	}
+
+
+	@Override // 티켓박스의 아이디 찾기 버튼 클릭 시 실행
+	public Parent idSearchProc(Parent root) {
+		// TODO Auto-generated method stub
+		
+		// 아이디 찾기 창이라는 새로운 창 띄움(idSearch.fxml)
+		Stage idForm = new Stage();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../idSearch.fxml"));
+		
+		Parent search = null;
+		try {
+			search = loader.load();
+			idForm.setScene(new Scene(search));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		LoginController ctrl = loader.getController();
+		ctrl.setSearch(search);
+		
+		idForm.setTitle("아이디 찾기 창");
+		idForm.show(); 
+		
+		return search;
+		
+	}
+
+
+	@Override // 티켓박스의 비밀번호 찾기 버튼 클릭 시 실행
+	public Parent pwSearchProc(Parent root) {
+		// TODO Auto-generated method stub
+		
+		// 비밀번호 찾기 창이라는 새로운 창 띄움(pwSearch.fxml)
+		Stage pwForm = new Stage();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../pwSearch.fxml"));
+		
+		Parent search = null;
+		try {
+			search = loader.load();
+			pwForm.setScene(new Scene(search));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		LoginController ctrl = loader.getController();
+		ctrl.setSearch(search);
+		
+		pwForm.setTitle("비밀번호 찾기 창");
+		pwForm.show(); 
+		
+		return search;
 	}
 
 }

@@ -29,7 +29,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" onAction="#joinProc" prefHeight="20.0" prefWidth="100.0" text="회원가입" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#joinProc" prefHeight="20.0" prefWidth="100.0" text="회원가입" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
 
       <Label alignment="CENTER" prefHeight="17.0" prefWidth="620.0" text="Ticket Box" GridPane.columnSpan="3">
          <font>
@@ -62,6 +62,8 @@
             <Insets right="20.0" />
          </GridPane.margin>
       </TextField>
+      <Button mnemonicParsing="false" onAction="#idSearchProc" prefHeight="20.0" prefWidth="100.0" text="아이디 찾기" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+      <Button mnemonicParsing="false" onAction="#pwSearchProc" prefHeight="20.0" prefWidth="100.0" text="비밀번호 찾기" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

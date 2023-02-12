@@ -116,7 +116,7 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <TextField fx:id="joinTel" prefHeight="30.0" promptText="전화번호 입력" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <TextField fx:id="joinTel" prefHeight="30.0" promptText="(-) 제외 전화번호 입력" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <font>
             <Font size="14.0" />
          </font></TextField>

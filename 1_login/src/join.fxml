@@ -124,12 +124,12 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <Button fx:id="joinIdDup" mnemonicParsing="false" onAction="#idDupProc" prefHeight="30.0" prefWidth="122.0" text="중복확인" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Button fx:id="joinIdDup" mnemonicParsing="false" onAction="#idDupProc" prefHeight="30.0" prefWidth="127.0" text="중복확인" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
          <GridPane.margin>
-            <Insets left="13.0" right="19.0" />
+            <Insets left="13.0" right="17.0" />
          </GridPane.margin>
       </Button>
       <Button fx:id="joinAuthSend" mnemonicParsing="false" onAction="#authSendProc" prefHeight="30.0" prefWidth="115.0" text="인증번호 발송" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
@@ -137,21 +137,24 @@
             <Font size="14.0" />
          </font>
          <GridPane.margin>
-            <Insets left="13.0" right="19.0" />
+            <Insets left="13.0" right="17.0" />
          </GridPane.margin>
       </Button>
       
-      <TextField fx:id="joinAge" editable="false" prefHeight="30.0" prefWidth="126.0" promptText="나이 자동 계산" GridPane.columnIndex="2" GridPane.rowIndex="5">
+      <TextField fx:id="joinAge" alignment="CENTER" editable="false" prefHeight="30.0" prefWidth="126.0" promptText="나이 자동 계산" GridPane.columnIndex="2" GridPane.rowIndex="5">
          <GridPane.margin>
-            <Insets left="13.0" right="19.0" />
+            <Insets left="13.0" right="17.0" />
          </GridPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
       </TextField>
       <Button fx:id="joinAuthOk" mnemonicParsing="false" onAction="#authOkProc" prefHeight="30.0" prefWidth="133.0" text="인증번호 확인" GridPane.columnIndex="2" GridPane.rowIndex="7">
          <font>
             <Font size="14.0" />
          </font>
          <GridPane.margin>
-            <Insets left="13.0" right="19.0" />
+            <Insets left="13.0" right="17.0" />
          </GridPane.margin>
       </Button>
       <DatePicker fx:id="joinBirth" onAction="#birthProc" prefHeight="30.0" prefWidth="284.0" promptText="생년월일 선택" GridPane.columnIndex="1" GridPane.rowIndex="5">

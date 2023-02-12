@@ -3,8 +3,10 @@ package main.service.login;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import main.LoginController;
 import main.dao.DatabaseService;
@@ -84,6 +86,10 @@ public class LoginServiceImpl implements LoginService{
 
 		joinForm.setTitle("회원 가입 창");
 		joinForm.show();
+		
+		// 생년월일 prompt text 폰트 크기 맞춰줌
+		DatePicker birth = (DatePicker) join.lookup("#joinBirth");
+		birth.getEditor().setFont(new Font(14));
 
 		return join;
 	}

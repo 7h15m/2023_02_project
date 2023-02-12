@@ -12,6 +12,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import main.LoginController;
 import main.dao.DatabaseService;
@@ -50,6 +51,7 @@ public class JoinServiceImpl implements JoinService{
 		TextField auth = (TextField) membership.lookup("#joinAuth");
 		PasswordField pw = (PasswordField) membership.lookup("#joinPw");
 		PasswordField pwOk = (PasswordField) membership.lookup("#joinPwOk");
+		
 		
 		// 비어있을 경우 에러 메세지
 		if(id.getText().isEmpty()) {
@@ -247,7 +249,6 @@ public class JoinServiceImpl implements JoinService{
 			auth.setEditable(false);
 			// 인증번호 확인이 완료되었다는 논리값(완료시에만 true)
 			authFin = true;
-			
 		// 인증번호 확인값이 불일치할 경우	
 		} else {
 			cs.errorMsg("인증번호 확인", "인증번호 일치여부", "인증번호가 불일치합니다");
@@ -259,13 +260,24 @@ public class JoinServiceImpl implements JoinService{
 	
 	// 생년월일 선택 시 나이 계산해서 나이창에 입력되도록
 	public void birthProc(Parent membership) {
+		
 		TextField age = (TextField) membership.lookup("#joinAge");
 		
 		DatePicker birth = (DatePicker) membership.lookup("#joinBirth");
 		LocalDate today = LocalDate.now();
-		ageCal = (today.getYear()-birth.getValue().getYear())+1;	
+//		LocalDate clear = LocalDate.parse("1900-01-01");
 		
-		age.setText(String.valueOf(ageCal)+" 세");
+		// 생년월일 선택 시 오늘 이전까지만 선택 가능하도록
+		if(birth.getValue().getYear()>=today.getYear()&&birth.getValue().getMonthValue()>=today.getMonthValue()&&birth.getValue().getDayOfMonth()>=today.getDayOfMonth()) {
+			cs.errorMsg("입력 에러", "입력 형식 불일치", "생년월일은 오늘 이전 날짜만 가능합니다");
+			birth.requestFocus();
+			age.clear();
+//			birth.setValue(clear);
+		} else {
+			ageCal = (today.getYear()-birth.getValue().getYear())+1;	
+			
+			age.setText(String.valueOf(ageCal)+" 세");
+		}
 
 	}
 
